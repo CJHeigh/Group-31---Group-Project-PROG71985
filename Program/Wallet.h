@@ -11,8 +11,8 @@
 typedef struct
 {
 	char* walletID; // Random letters and numbers
-	char* walletUsername;
-	char* walletEmailAddress;
+	char* walletUsername; // For retrieving the account
+	char* walletPassword; // For entering the account
 	float btcAmount; // Bitcoin
 	float ethAmount; // Ethereum
 	float adaAmount; // Cardano
