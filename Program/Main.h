@@ -7,8 +7,14 @@
 
 #include <stdio.h> // Standard in and out
 #include <stdbool.h> // Boolean operator
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 #pragma once
 
-#define DATABASE_SIZE 20
+#define BUFFER_SIZE 60
+#define DATABASE_SIZE 60
+#define DATABASE_NAME "WalletDatabase.txt"
+#define _CRT_SECURE_NO_WARNINGS
 
 void Quit();

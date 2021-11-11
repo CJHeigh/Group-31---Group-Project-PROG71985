@@ -18,7 +18,7 @@
     <ClCompile Include="WalletManager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WalletDatabase.c">
+    <ClCompile Include="TxtDatabase.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main.c">
@@ -38,7 +38,7 @@
     <ClInclude Include="WalletManager.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="WalletDatabase.h">
+    <ClInclude Include="TxtDatabase.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="Main.h">

@@ -3,12 +3,10 @@
 //      GROUP 31		//
 //////////////////////////
 
-// WalletManager.h is responsible for all the libraries used in WalletManager.c
+// TxtDatabase.h is responsible for all the libraries used in TxtDatabase.c
 
 #include "Main.h" // Basic includes, variables, defines, and functions
 #pragma once
 
-void PrintMenu();
-void DisplayWallet();
-void DisplayWalletRange();
-void DisplayAllWallets();
+void ReadFromTxt();
+void WriteToTxt();
