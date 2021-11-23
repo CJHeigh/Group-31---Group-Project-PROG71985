@@ -10,5 +10,5 @@
 
 void PrintMenu();
 void DisplayWallet();
-void DisplayWalletRange();
+int DisplayWalletRange();
 void DisplayAllWallets();

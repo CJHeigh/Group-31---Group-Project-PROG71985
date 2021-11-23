@@ -8,6 +8,9 @@
 #include "TxtDatabase.h" // This script's header file
 #include "Wallet.h" // For writing to the wallet
 
+#define _CRT_SECURE_NO_WARNINGS
+
+
 void ReadFromTxt()
 {
 	// Opens the disk wallet database to add new lines to it (if needed)

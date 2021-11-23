@@ -8,6 +8,7 @@
 #include "WalletManager.h" // This script's header file
 #include "Wallet.h" // For accessing wallet information
 
+
 bool printWelcome = true;
 bool stopMenu = false;
 
@@ -22,7 +23,7 @@ void PrintMenu()
 			printWelcome = false;
 		}
 
-		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd)Display a range of crypto wallets\nd) Display all crypto wallets\nf) Quit\n");
+		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\nd) Display all crypto wallets\nf) Quit\n");
 
 		char input = '.';
 		while (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f')
@@ -41,11 +42,11 @@ void PrintMenu()
 		case 'a':
 			// Ask the user for a username and password. Ask if they also want to store btc. If not, return a negative float for AddWallet(btcToAdd).
 			// Then find the nearest index to store the wallet and execute AddWallet
-			AddWallet();
+			//AddWallet();
 			break;
 		case 'b':
 			// Get a wallet ID. Check if it exists or not. If it does, ask the user for the username and password to the wallet in order to execute the DeleteWallet function.
-			DeleteWallet();
+			//DeleteWallet();
 			break;
 		case 'c':
 			DisplayWallet();
@@ -54,7 +55,7 @@ void PrintMenu()
 			DisplayWalletRange();
 			break;
 		case 'e':
-			DisplayAllWallets();
+			//DisplayAllWallets();
 			break;
 		case 'f':
 			stopMenu = true;
@@ -73,12 +74,41 @@ void DisplayWallet()
 	// Ask the user if they would like to update the current wallet. // If they say yes, ask for the password corrosponding to the username.
 	
 	// If they match, ask if they would like to update their username, password, and btc amount. If any of the three variables doesn't need to be changed, return it as null when calling UpdateWallet() EXCEPT for btc amount. For btc amount, return a negative float.
-	UpdateWallet();
+	//UpdateWallet();
 }
 
-void DisplayWalletRange()
+int DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, usernames, and btc amounts between them
 {
-	// Get two wallet ID's and print the wallet ID's, usernames, and btc amounts between them
+	int firstWalletID;
+	int lastWalletID;
+	
+	printf("Enter '0' to return to menu. \n");
+
+	//Input first wallet ID
+	printf("Please enter the first wallet ID: ");
+	scanf_s("%d", &firstWalletID);
+	
+	//Input second wallet ID
+	printf("Please enter the last wallet ID: ");
+	scanf_s("%d", &lastWalletID);
+
+	if (firstWalletID <= 0)
+		return 0;
+	if (lastWalletID <= 0)
+		return 0;
+
+	for (firstWalletID; firstWalletID <= lastWalletID; firstWalletID++) //For all elements in the user specified range...
+	{
+		if (0 < firstWalletID <= lastWalletID && walletDatabase[firstWalletID - 1].walletID != NULL) //If the walletID is valid and full, allow viewing
+		{
+			printf("\nWallet ID: %d\n", walletDatabase[firstWalletID - 1].walletID);
+			printf("Username: %p\n", walletDatabase[firstWalletID - 1].walletUsername);
+			printf("Bitcoin Value: %f\n", walletDatabase[firstWalletID - 1].btcAmount);
+		}
+		else
+			printf("There is no data in that spot!\n");
+	}
+	return 0;
 }
 
 void DisplayAllWallets()
