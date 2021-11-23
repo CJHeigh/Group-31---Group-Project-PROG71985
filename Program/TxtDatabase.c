@@ -8,9 +8,6 @@
 #include "TxtDatabase.h" // This script's header file
 #include "Wallet.h" // For writing to the wallet
 
-#define _CRT_SECURE_NO_WARNINGS
-
-
 void ReadFromTxt()
 {
 	// Opens the disk wallet database to add new lines to it (if needed)
@@ -56,33 +53,31 @@ void ReadFromTxt()
 				// Retrieve data from the current line if the current line is not purely equal to a new line or end of file
 				if (strcmp(currentLine, "\n") != 0 && strcmp(currentLine, "\0") != 0) //&& currentLine != "")
 				{
-					char walletUsername[BUFFER_SIZE] = "";
-					char walletPassword[BUFFER_SIZE] = "";
-					char btcAmount[BUFFER_SIZE] = "";
+					char walletUsername[BUFFER_SIZE] = { NULL };
+					char walletPassword[BUFFER_SIZE] = { NULL };
+					char btcAmount[BUFFER_SIZE] = { NULL };
 
 					int semiColonsPassed = 0;
+					// Splits varaibles off the line. Would be nicer to have json!
 					for (int s = 0; s < sizeof(currentLine); s++)
 					{
-						if (semiColonsPassed == 0)
-							strncat(walletUsername, &currentLine[s], 1);
-						else if (semiColonsPassed == 1)
-							strncat(walletPassword, &currentLine[s], 1);
-						else if (semiColonsPassed == 2)
-							strncat(btcAmount, &currentLine[s], 1);
+						if (currentLine[s] == ';')
+							semiColonsPassed++;
+						else
+						{
+							if (semiColonsPassed == 0)
+								strncat(walletUsername, &currentLine[s], 1);
+							else if (semiColonsPassed == 1)
+								strncat(walletPassword, &currentLine[s], 1);
+							else if (semiColonsPassed == 2)
+								strncat(btcAmount, &currentLine[s], 1);
+						}
 					}
 
-					walletDatabase[i].walletUsername = walletUsername;
-					walletDatabase[i].walletPassword = walletPassword;
-					walletDatabase[i].btcAmount = atof(btcAmount);
-					walletDatabase[i].walletOccupied = true;
+					walletDatabase[i] = AddWallet(i+1, walletUsername, walletPassword, atof(btcAmount));
 				}
 				else
-				{
-					walletDatabase[i].walletOccupied = false;
-				}
-
-				walletDatabase[i].walletID = i + 1;
-				//currentLine = "";
+					walletDatabase[i] = DeleteWallet();
 
 				break;
 			}
@@ -108,9 +103,9 @@ void WriteToTxt()
 	// Assigns the current room name to txt file
 	for (int i = 0; i < DATABASE_SIZE; i++)
 	{
-		if (walletDatabase[i].walletOccupied)
+		if (walletDatabase[i]->walletOccupied != false && strcmp(walletDatabase[i]->walletUsername, "") != 0)
 		{
-			fprintf(txtDatabaseToWrite, "%s;%s;%f", walletDatabase[i].walletUsername, walletDatabase[i].walletPassword, walletDatabase[i].btcAmount);
+			fprintf(txtDatabaseToWrite, "%s;%s;%f", walletDatabase[i]->walletUsername, walletDatabase[i]->walletPassword, walletDatabase[i]->btcAmount);
 
 			if (i < DATABASE_SIZE - 1)
 				fprintf(txtDatabaseToWrite, "\n");

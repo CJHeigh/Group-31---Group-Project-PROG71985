@@ -8,22 +8,19 @@
 #include "WalletManager.h" // This script's header file
 #include "Wallet.h" // For accessing wallet information
 
-
-bool printWelcome = true;
-bool stopMenu = false;
+void PrintWelcome()
+{
+	printf("*******************************\n*          WELCOME TO         *\n*  CRYPTO WALLET DATABASE V1  *\n*        PATENT PENDING       *\n*******************************\n\n");
+}
 
 void PrintMenu()
 {
+	bool stopMenu = false;
+
 	// Keeps reprinting the menu until Quit() is executed
 	while (!stopMenu)
 	{
-		if (printWelcome)
-		{
-			printf("*******************************\n*          WELCOME TO         *\n*  CRYPTO WALLET DATABASE V1  *\n*        PATENT PENDING       *\n*******************************\n\n");
-			printWelcome = false;
-		}
-
-		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\nd) Display all crypto wallets\nf) Quit\n");
+		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\ne) Display all crypto wallets\nf) Quit\n");
 
 		char input = '.';
 		while (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f')
@@ -77,38 +74,39 @@ void DisplayWallet()
 	//UpdateWallet();
 }
 
-int DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, usernames, and btc amounts between them
-{
+void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, usernames, and btc amounts between them
+{	
 	int firstWalletID;
-	int lastWalletID;
-	
-	printf("Enter '0' to return to menu. \n");
-
 	//Input first wallet ID
 	printf("Please enter the first wallet ID: ");
 	scanf_s("%d", &firstWalletID);
-	
+	while (getchar() != '\n');
+
+	int lastWalletID;
 	//Input second wallet ID
 	printf("Please enter the last wallet ID: ");
 	scanf_s("%d", &lastWalletID);
+	while (getchar() != '\n');
 
-	if (firstWalletID <= 0)
-		return 0;
-	if (lastWalletID <= 0)
-		return 0;
-
-	for (firstWalletID; firstWalletID <= lastWalletID; firstWalletID++) //For all elements in the user specified range...
+	// If the provided index is invalid...
+	if (firstWalletID <= 0 || lastWalletID <= 0 || lastWalletID > DATABASE_SIZE || firstWalletID > lastWalletID)
+		printf("Enter a valid wallet ID range!\n");
+	// Otherwise,
+	else
 	{
-		if (0 < firstWalletID <= lastWalletID && walletDatabase[firstWalletID - 1].walletID != NULL) //If the walletID is valid and full, allow viewing
+		// For all elements in the user specified range...
+		for (firstWalletID; firstWalletID <= lastWalletID; firstWalletID++)
 		{
-			printf("\nWallet ID: %d\n", walletDatabase[firstWalletID - 1].walletID);
-			printf("Username: %p\n", walletDatabase[firstWalletID - 1].walletUsername);
-			printf("Bitcoin Value: %f\n", walletDatabase[firstWalletID - 1].btcAmount);
+			printf("Wallet ID %d ", firstWalletID);
+
+			// If the wallet ID is occupied, view it
+			if (walletDatabase[firstWalletID - 1]->walletOccupied != false && strcmp(walletDatabase[firstWalletID - 1]->walletUsername, "") != 0)
+				printf("is occupied by user %s and contains %f Bitcoin.\n", walletDatabase[firstWalletID - 1]->walletUsername, walletDatabase[firstWalletID - 1]->btcAmount);
+			// Otherwise, notify the user that it is unoccupied
+			else
+				printf("is unoccupied.\n");
 		}
-		else
-			printf("There is no data in that spot!\n");
 	}
-	return 0;
 }
 
 void DisplayAllWallets()

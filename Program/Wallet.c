@@ -7,42 +7,54 @@
 
 #include "Wallet.h" // This script's header file
 
-void AddWallet(Wallet walletToAdd, char* usernameToAdd, char* passwordToAdd, float btcToAdd)
+Wallet* AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwordToAdd[BUFFER_SIZE], float btcToAdd)
 {
-	walletToAdd.walletOccupied = true;
-	walletToAdd.walletUsername = usernameToAdd;
-	walletToAdd.walletPassword = passwordToAdd;
-	walletToAdd.btcAmount = btcToAdd;
-	printf("A wallet has been added with the username '%s' and password of '%s'. It contains %f BTC.", usernameToAdd, passwordToAdd, btcToAdd);
+	Wallet temp;
+	temp.walletOccupied = true;
+
+	Wallet* walletToReturn = malloc(&temp, sizeof(temp)+1);
+	walletToReturn->walletID = walletIDToAdd;
+	strcpy(walletToReturn->walletUsername, usernameToAdd);
+	strcpy(walletToReturn->walletPassword, passwordToAdd);
+	walletToReturn->btcAmount = btcToAdd;
+
+	return walletToReturn;
 }
 
-void DeleteWallet(Wallet walletToDelete)
+Wallet* DeleteWallet()
 {
-	printf("Wallet that belongs to '%s' has been destroyed. %f BTC has been returned to the blockchain.", walletToDelete.walletUsername, walletToDelete.btcAmount);
+	Wallet temp;
+	temp.walletOccupied = false;
 
-	walletToDelete.walletOccupied = false;
-	walletToDelete.walletUsername = NULL;
-	walletToDelete.walletPassword = NULL;
-	walletToDelete.btcAmount = 0;
+	Wallet* walletToReturn = malloc(&temp, sizeof(temp) + 1);
+	*walletToReturn->walletUsername = NULL;
+	*walletToReturn->walletPassword = NULL;
+	walletToReturn->btcAmount = 0;
+
+	return walletToReturn;
 }
 
-void UpdateWallet(Wallet walletToUpdate, char* usernameToUpdateTo, char* passwordToUpdateTo, float btcToUpdateTo)
+Wallet* UpdateWallet(Wallet* walletToUpdate, char usernameToUpdateTo[BUFFER_SIZE], char passwordToUpdateTo[BUFFER_SIZE], float btcToUpdateTo)
 {
+	Wallet* walletToReturn = malloc(walletToUpdate, sizeof(walletToUpdate)+1);
+
 	if (usernameToUpdateTo != NULL)
 	{
-		walletToUpdate.walletUsername = usernameToUpdateTo;
+		strcpy(walletToUpdate->walletUsername, usernameToUpdateTo);
 		printf("Username has successfully change to '%s'.", usernameToUpdateTo);
 	}
 
 	if (passwordToUpdateTo != NULL)
 	{
-		walletToUpdate.walletPassword = passwordToUpdateTo;
+		strcpy(walletToUpdate->walletPassword, passwordToUpdateTo);
 		printf("Password has successfully change to '%s'.", passwordToUpdateTo);
 	}
 
 	if (btcToUpdateTo >= 0)
 	{
-		walletToUpdate.btcAmount = btcToUpdateTo;
+		walletToUpdate->btcAmount = btcToUpdateTo;
 		printf("BTC has been updated to %f.", btcToUpdateTo);
 	}
+
+	return walletToReturn;
 }

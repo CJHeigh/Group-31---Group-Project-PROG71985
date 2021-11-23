@@ -8,7 +8,8 @@
 #include "Main.h" // Basic includes, variables, defines, and functions
 #pragma once
 
+void PrintWelcome();
 void PrintMenu();
 void DisplayWallet();
-int DisplayWalletRange();
+void DisplayWalletRange();
 void DisplayAllWallets();

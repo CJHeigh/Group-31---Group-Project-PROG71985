@@ -31,21 +31,21 @@
   <ItemGroup>
     <Text Include="README.txt" />
     <Text Include="WalletDatabase.txt">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WalletManager.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TxtDatabase.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Main.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Wallet.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WalletManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
