@@ -12,14 +12,14 @@ typedef struct
 {
 	int walletID; // To seperate from other wallets
 	bool walletOccupied; // To check whether this wallet ID is occupied
-	char* walletUsername; // For retrieving the account
-	char* walletPassword; // For entering the account
+	char walletUsername[BUFFER_SIZE]; // For retrieving the account
+	char walletPassword[BUFFER_SIZE]; // For entering the account
 	float btcAmount; // Bitcoin
 
 } Wallet;
 
-Wallet walletDatabase[DATABASE_SIZE];
+Wallet* walletDatabase[DATABASE_SIZE];
 
-void AddWallet(Wallet walletToAdd, char* usernameToAdd, char* passwordToAdd, float btcToAdd);
-void DeleteWallet(Wallet walletToDelete);
-void UpdateWallet(Wallet walletToUpdate, char* usernameToUpdateTo, char* passwordToUpdateTo, float btcToUpdateTo);
+Wallet* AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwordToAdd[BUFFER_SIZE], float btcToAdd);
+Wallet* DeleteWallet();
+Wallet* UpdateWallet(Wallet* walletToUpdate, char usernameToUpdateTo[BUFFER_SIZE], char passwordToUpdateTo[BUFFER_SIZE], float btcToUpdateTo);
