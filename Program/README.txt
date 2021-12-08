@@ -10,9 +10,9 @@ Garrett Todd:
 > DisplayWallet and DisplayAllWallets functions
 > 
 
-NAME: 
-> 
-> 
+Kenneth T: 
+> DisplayWalletRange function
+> DisplayAllWallets (partial) 
 
 PROJECT NOTES
 > Remember to comment and update this txt file!
