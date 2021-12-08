@@ -52,7 +52,7 @@ void PrintMenu()
 			DisplayWalletRange();
 			break;
 		case 'e':
-			//DisplayAllWallets();
+			DisplayAllWallets();
 			break;
 		case 'f':
 			stopMenu = true;
@@ -66,13 +66,120 @@ void PrintMenu()
 
 void DisplayWallet()
 {
-	// Get a wallet ID and display it's ID, username, and btc amount 
+	// I tried to be very verbose with my print statments they can be toned down once the function works properly.
 
-	// Ask the user if they would like to update the current wallet. // If they say yes, ask for the password corrosponding to the username.
+	// Get a wallet ID and display it's ID, username, and btc amount // COMPLETED NOT TESTED
+
+	// Ask the user if they would like to update the current wallet. // If they say yes, ask for the password corrosponding to the username. // COMPLETED NOT TESTED
 	
 	// If they match, ask if they would like to update their username, password, and btc amount. If any of the three variables doesn't need to be changed, return it as null when calling UpdateWallet() EXCEPT for btc amount. For btc amount, return a negative float.
-	//UpdateWallet();
+	//UpdateWallet(); // COMPLETED NOT TESTED
 
+	int userWalletID = NULL;
+	bool userInputInvalid = true;
+
+	do
+	{
+		printf("Enter the crypto wallet ID you wish to access -> ");
+		scanf_s("%d", &userWalletID);
+
+		if (userWalletID <= 0 || userWalletID > DATABASE_SIZE)
+		{
+			printf("Wallet ID entered is invalid\n");
+		}
+		else
+		{
+			printf("Wallet ID entered is valid\n");
+			userInputInvalid = false;
+		}
+	} while (userInputInvalid);
+
+	if (walletDatabase[userWalletID]->walletOccupied == true)
+	{
+		printf("Wallet ID -> %d\nUsername -> %s\n Bitcoin amount -> %f\n", walletDatabase[userWalletID]->walletID, walletDatabase[userWalletID]->walletUsername, walletDatabase[userWalletID]->btcAmount);
+	}
+	else
+	{
+		printf("Wallet is unoccupied\n");
+		return;
+	}
+
+	userInputInvalid = true;
+	char userAnswer;
+	char userPass[BUFFER_SIZE] = { NULL };
+
+	do
+	{
+		printf("Would you like to update this current wallet? y or n -> ");
+		scanf_s(" %c", &userAnswer, 1);
+
+		if (userAnswer == 'y' || userAnswer == 'n')
+		{
+			if (userAnswer == 'n')
+			{
+				printf("Exciting wallet\n");
+				return;
+			}
+			userInputInvalid = false;
+		}
+		else
+		{
+			printf("Character entered is invalid\n");
+		}
+	} while (userInputInvalid);
+
+	userInputInvalid = true;
+
+	do
+	{
+		printf("Enter Password for wallet #%d\nUsername -> %s\nPassword -> ", walletDatabase[userWalletID]->walletID, walletDatabase[userWalletID]->walletUsername);
+		scanf_s("%s", userPass, BUFFER_SIZE);
+
+		if (strcmp(userPass, walletDatabase[userWalletID]->walletPassword) == 0)
+		{
+			float BTCamount = -1;
+			char userChange[BUFFER_SIZE] = { NULL };
+			char passChange[BUFFER_SIZE] = { NULL };
+
+			printf("Would you like to change your Username? y or n -> ");
+			scanf_s("%c", &userAnswer, 1);
+			
+			if (userAnswer == 'y')
+			{
+				printf("Enter what you would like to change your Username to -> ");
+				scanf_s("%s", userChange, BUFFER_SIZE);
+			}
+
+			printf("Would you like to change your Password? y or n -> ");
+			scanf_s("%c", &userAnswer, 1);
+
+			if (userAnswer == 'y')
+			{
+				printf("Enter what you would like to change your Password to -> ");
+				scanf_s("%s", passChange, BUFFER_SIZE);
+			}
+
+			printf("Do you need to change your Bitcoin amount? y or n -> ");
+			scanf_s("%c", &userAnswer, 1);
+
+			if (userAnswer == 'y')
+			{
+				printf("Enter what to change your Bitcoin amount to -> ");
+				scanf_s("%d", &BTCamount);
+			}
+
+			UpdateWallet(walletDatabase[userWalletID], userChange, passChange, BTCamount);
+
+			printf("Wallet successfuly updated, exceting wallet\n");
+			userInputInvalid = false;
+		}
+		else
+		{
+			printf("Password entered is invalid\n");
+		}
+	} while (userInputInvalid);
+
+	return;
 }
 
 void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, usernames, and btc amounts between them

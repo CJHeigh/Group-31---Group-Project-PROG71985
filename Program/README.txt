@@ -6,8 +6,8 @@ CJ:
 > Wallet struct and assigning incoming variables that has to do with the wallet [DONE, UNTESTED]
 > Reading and writing from txt file [DONE, UNTESTED]
 
-NAME:
-> 
+Garrett Todd:
+> DisplayWallet and DisplayAllWallets functions
 > 
 
 NAME: 
