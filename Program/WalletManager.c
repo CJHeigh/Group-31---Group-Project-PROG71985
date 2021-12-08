@@ -72,6 +72,7 @@ void DisplayWallet()
 	
 	// If they match, ask if they would like to update their username, password, and btc amount. If any of the three variables doesn't need to be changed, return it as null when calling UpdateWallet() EXCEPT for btc amount. For btc amount, return a negative float.
 	//UpdateWallet();
+
 }
 
 void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, usernames, and btc amounts between them
@@ -111,5 +112,18 @@ void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, user
 
 void DisplayAllWallets()
 {
-	// Display and print all wallet ID's, usernames, and btc amounts
+	for (int currentWalletID = 0; currentWalletID < DATABASE_SIZE; currentWalletID++)
+	{
+		if (!walletDatabase[currentWalletID]->walletOccupied)
+		{
+			printf("%d EMPTY\n", walletDatabase[currentWalletID]->walletID);
+		}
+		else
+		{
+			printf("WalletID: %d, IN USE, User: %s, Bitcoin Amount: %f\n",
+				walletDatabase[currentWalletID]->walletID,
+				walletDatabase[currentWalletID]->walletUsername,
+				walletDatabase[currentWalletID]->btcAmount);
+		}
+	}
 }
