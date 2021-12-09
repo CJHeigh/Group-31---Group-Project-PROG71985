@@ -15,6 +15,7 @@
 #define BUFFER_SIZE 60
 #define DATABASE_SIZE 60
 #define WALLETEMPTY 0
+#define WALLETFULL 1
 #define DATABASE_NAME "WalletDatabase.txt"
 #define _CRT_SECURE_NO_WARNINGS
 
