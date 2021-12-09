@@ -37,7 +37,7 @@ void PrintMenu()
 		case 'a':
 			// Ask the user for a username and password. Ask if they also want to store btc. If not, return a negative float for AddWallet(btcToAdd).
 			// Then find the nearest index to store the wallet and execute AddWallet
-			//AddWallet();
+			addWalletFromMenu(walletDatabase);
 			break;
 		case 'b':
 			// Get a wallet ID. Check if it exists or not. If it does, ask the user for the username and password to the wallet in order to execute the DeleteWallet function.
@@ -234,4 +234,74 @@ void DisplayAllWallets()
 				walletDatabase[currentWalletID].btcAmount);
 		}
 	}
+}
+
+void addWalletFromMenu(Wallet* walletDatabase)
+{
+	int maxLen = BUFFER_SIZE; // Max user input 
+	char* userLetter = malloc(maxLen * sizeof(char)); // For user input
+
+	puts("Enter '0' to return to menu. \n");
+
+	// Display list of empty wallets of selected type
+	for (int curWallet = 0; curWallet < BUFFER_SIZE; curWallet++)
+	{
+		if (walletDatabase[curWallet].walletOccupied == WALLETEMPTY)
+		{
+			printf("Wallet #%d is available.\n", curWallet);
+		}
+	}
+
+	// Ask for wallet number to assign
+	int userWalletDecision = 0;
+	int selectedWalletID = 0;
+	do
+	{
+		puts("Please enter the wallet #ID you would like to assign: \n");
+		userWalletDecision = scanf("%s", userLetter);
+
+		// Check for valid input
+		if (userLetter == NULL)
+			continue;
+
+		// Convert string to integer
+		selectedWalletID = atoi(userLetter);
+		if (selectedWalletID == 0)
+		{
+			// Didn't convert to an integer
+			printf("Invalid entry.");
+			continue;
+		}
+
+		if (walletDatabase[selectedWalletID].walletOccupied == WALLETEMPTY)
+		{
+			printf("Wallet #%d is available and matches selection.\n", selectedWalletID);
+			break;
+		}
+
+		if (selectedWalletID >= 0)
+			break;
+
+		printf("Wallet #%d doesn't match selection.\n", selectedWalletID);
+	} while (1);
+
+	// Loop to get username and password
+	do
+	{
+		printf("Please enter the new wallet username: \n");
+		userWalletDecision = scanf("%s", walletDatabase[selectedWalletID].walletUsername);
+	} while (walletDatabase[selectedWalletID].walletUsername == NULL || userWalletDecision != 1);
+	do
+	{
+		printf("Please enter the new password: \n");
+		userWalletDecision = scanf("%s", walletDatabase[selectedWalletID].walletPassword);
+	} while (walletDatabase[selectedWalletID].walletPassword == NULL || userWalletDecision != 1);
+
+	// Mark room as assigned
+	walletDatabase[selectedWalletID].walletOccupied = WALLETFULL;
+	walletDatabase[selectedWalletID].walletID = selectedWalletID;
+
+	// Run addWalletFunction with all the data 
+
+	printf("Successfully added guest.\n\n");
 }
