@@ -103,9 +103,9 @@ void WriteToTxt()
 	// Assigns the current room name to txt file
 	for (int i = 0; i < DATABASE_SIZE; i++)
 	{
-		if (walletDatabase[i]->walletOccupied != false && strcmp(walletDatabase[i]->walletUsername, "") != 0)
+		if (walletDatabase[i].walletOccupied != false && strcmp(walletDatabase[i].walletUsername, "") != 0)
 		{
-			fprintf(txtDatabaseToWrite, "%s;%s;%f", walletDatabase[i]->walletUsername, walletDatabase[i]->walletPassword, walletDatabase[i]->btcAmount);
+			fprintf(txtDatabaseToWrite, "%s;%s;%f", walletDatabase[i].walletUsername, walletDatabase[i].walletPassword, walletDatabase[i].btcAmount);
 
 			if (i < DATABASE_SIZE - 1)
 				fprintf(txtDatabaseToWrite, "\n");

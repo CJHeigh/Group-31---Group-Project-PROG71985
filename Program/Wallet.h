@@ -18,7 +18,7 @@ typedef struct
 
 } Wallet;
 
-Wallet* walletDatabase[DATABASE_SIZE];
+Wallet walletDatabase[DATABASE_SIZE];
 
 Wallet* AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwordToAdd[BUFFER_SIZE], float btcToAdd);
 Wallet* DeleteWallet();

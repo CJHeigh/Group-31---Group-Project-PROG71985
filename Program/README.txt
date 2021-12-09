@@ -3,8 +3,8 @@ DIVISION OF LABOUR
 CJ:
 > Project theme [DONE]
 > Setting up project template and documentation that other group members need to do [DONE]
-> Wallet struct and assigning incoming variables that has to do with the wallet [DONE, UNTESTED]
-> Reading and writing from txt file [DONE, UNTESTED]
+> Wallet struct and assigning incoming variables that has to do with the wallet [DONE]
+> Reading and writing from txt file [DONE]
 
 Garrett Todd:
 > DisplayWallet and DisplayAllWallets functions

@@ -29,8 +29,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="README.txt" />
     <Text Include="WalletDatabase.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="README.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

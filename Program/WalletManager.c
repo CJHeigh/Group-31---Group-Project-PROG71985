@@ -15,10 +15,8 @@ void PrintWelcome()
 
 void PrintMenu()
 {
-	bool stopMenu = false;
-
 	// Keeps reprinting the menu until Quit() is executed
-	while (!stopMenu)
+	while (1)
 	{
 		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\ne) Display all crypto wallets\nf) Quit\n");
 
@@ -55,7 +53,6 @@ void PrintMenu()
 			DisplayAllWallets(walletDatabase);
 			break;
 		case 'f':
-			stopMenu = true;
 			Quit();
 			break;
 		}
@@ -80,8 +77,12 @@ void DisplayWallet()
 
 	do
 	{
+		printf("%d", walletDatabase[0].walletID);
 		printf("Enter the crypto wallet ID you wish to access -> ");
 		scanf_s("%d", &userWalletID);
+
+		// Wallet ID is not equal to index!!!
+		userWalletID--;
 
 		if (userWalletID <= 0 || userWalletID > DATABASE_SIZE)
 		{
@@ -94,9 +95,9 @@ void DisplayWallet()
 		}
 	} while (userInputInvalid);
 
-	if (walletDatabase[userWalletID]->walletOccupied == true)
+	if (walletDatabase[userWalletID].walletOccupied == true)
 	{
-		printf("Wallet ID -> %d\nUsername -> %s\n Bitcoin amount -> %f\n", walletDatabase[userWalletID]->walletID, walletDatabase[userWalletID]->walletUsername, walletDatabase[userWalletID]->btcAmount);
+		printf("Wallet ID -> %d\nUsername -> %s\n Bitcoin amount -> %f\n", walletDatabase[userWalletID].walletID, walletDatabase[userWalletID].walletUsername, walletDatabase[userWalletID].btcAmount);
 	}
 	else
 	{
@@ -132,10 +133,10 @@ void DisplayWallet()
 
 	do
 	{
-		printf("Enter Password for wallet #%d\nUsername -> %s\nPassword -> ", walletDatabase[userWalletID]->walletID, walletDatabase[userWalletID]->walletUsername);
+		printf("Enter Password for wallet #%d\nUsername -> %s\nPassword -> ", walletDatabase[userWalletID].walletID, walletDatabase[userWalletID].walletUsername);
 		scanf_s("%s", userPass, BUFFER_SIZE);
 
-		if (strcmp(userPass, walletDatabase[userWalletID]->walletPassword) == 0)
+		if (strcmp(userPass, walletDatabase[userWalletID].walletPassword) == 0)
 		{
 			float BTCamount = -1;
 			char userChange[BUFFER_SIZE] = { NULL };
@@ -208,8 +209,8 @@ void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, user
 			printf("Wallet ID %d ", firstWalletID);
 
 			// If the wallet ID is occupied, view it
-			if (walletDatabase[firstWalletID - 1]->walletOccupied != false && strcmp(walletDatabase[firstWalletID - 1]->walletUsername, "") != 0)
-				printf("is occupied by user %s and contains %f Bitcoin.\n", walletDatabase[firstWalletID - 1]->walletUsername, walletDatabase[firstWalletID - 1]->btcAmount);
+			if (walletDatabase[firstWalletID - 1].walletOccupied != false && strcmp(walletDatabase[firstWalletID - 1].walletUsername, "") != 0)
+				printf("is occupied by user %s and contains %f Bitcoin.\n", walletDatabase[firstWalletID - 1].walletUsername, walletDatabase[firstWalletID - 1].btcAmount);
 			// Otherwise, notify the user that it is unoccupied
 			else
 				printf("is unoccupied.\n");
