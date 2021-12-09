@@ -25,4 +25,8 @@ void Quit()
 {
 	// Writes memory to txt file on quit
 	WriteToTxt();
+
+	printf("\nThank you for using the Crypto Wallet Database!\nPatent still pending.\n");
+
+	exit(0);
 }
