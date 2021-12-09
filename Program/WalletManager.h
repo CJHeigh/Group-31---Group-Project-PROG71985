@@ -12,4 +12,3 @@ void PrintWelcome();
 void PrintMenu();
 void DisplayWallet();
 void DisplayWalletRange();
-void DisplayAllWallets();

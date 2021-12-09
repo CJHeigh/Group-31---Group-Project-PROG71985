@@ -25,3 +25,4 @@ Wallet* DeleteWallet();
 Wallet* UpdateWallet(Wallet* walletToUpdate, char usernameToUpdateTo[BUFFER_SIZE], char passwordToUpdateTo[BUFFER_SIZE], float btcToUpdateTo);
 
 void addWalletFromMenu(Wallet* walletDatabase);
+void DisplayAllWallets(Wallet* walletDatabase);

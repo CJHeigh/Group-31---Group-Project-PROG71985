@@ -52,7 +52,7 @@ void PrintMenu()
 			DisplayWalletRange();
 			break;
 		case 'e':
-			DisplayAllWallets();
+			DisplayAllWallets(walletDatabase);
 			break;
 		case 'f':
 			stopMenu = true;
@@ -217,20 +217,20 @@ void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, user
 	}
 }
 
-void DisplayAllWallets()
+void DisplayAllWallets(Wallet* walletDatabase)
 {
 	for (int currentWalletID = 0; currentWalletID < DATABASE_SIZE; currentWalletID++)
 	{
-		if (!walletDatabase[currentWalletID]->walletOccupied)
+		if (!walletDatabase[currentWalletID].walletOccupied)
 		{
-			printf("%d EMPTY\n", walletDatabase[currentWalletID]->walletID);
+			printf("WalletID: %d is EMPTY\n", currentWalletID);
 		}
 		else
 		{
 			printf("WalletID: %d, IN USE, User: %s, Bitcoin Amount: %f\n",
-				walletDatabase[currentWalletID]->walletID,
-				walletDatabase[currentWalletID]->walletUsername,
-				walletDatabase[currentWalletID]->btcAmount);
+				walletDatabase[currentWalletID].walletID,
+				walletDatabase[currentWalletID].walletUsername,
+				walletDatabase[currentWalletID].btcAmount);
 		}
 	}
 }
