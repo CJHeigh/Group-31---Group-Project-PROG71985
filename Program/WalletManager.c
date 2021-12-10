@@ -81,7 +81,7 @@ void DisplayWallet()
 		printf("Enter the crypto wallet ID you wish to access -> ");
 		scanf_s("%d", &userWalletID);
 
-		// Wallet ID is not equal to index!!!
+		// Wallet ID is not equal to index!
 		userWalletID--;
 
 		if (userWalletID < 0 || userWalletID >= DATABASE_SIZE)
@@ -95,7 +95,7 @@ void DisplayWallet()
 		}
 	} while (userInputInvalid);
 
-	if (walletDatabase[userWalletID].walletOccupied == true)
+	if (walletDatabase[userWalletID].walletOccupied)
 	{
 		printf("Wallet ID -> %d\nUsername -> %s\n Bitcoin amount -> %f\n", walletDatabase[userWalletID].walletID, walletDatabase[userWalletID].walletUsername, walletDatabase[userWalletID].btcAmount);
 	}
