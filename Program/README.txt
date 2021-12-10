@@ -12,9 +12,8 @@ Garrett Todd:
 > Minor testing 
 
 Kenneth T: 
-> DisplayWalletRange function
+> DisplayWalletRange function, addWalletFromMenu function, displayOccupiedWalletsAlphabeticalByUsername function
 > DisplayAllWallets (partial)
-> addWalletFromMenu function
 > Warning and error fixes. 
 
 PROJECT NOTES
