@@ -22,7 +22,6 @@ Wallet AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwo
 
 void DeleteWallet(Wallet walletToDelete)
 {
-	walletToDelete.walletID = 0;
 	walletToDelete.walletOccupied = false;
 	*walletToDelete.walletUsername = '\0'; // Changed from NULL to '\0' to remove warning C4047
 	*walletToDelete.walletPassword = '\0'; // Same as line above

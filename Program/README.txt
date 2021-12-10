@@ -7,7 +7,7 @@ CJ:
 > Reading and writing from txt file [DONE]
 
 Garrett Todd:
-> DisplayWallet and DisplayAllWallets functions
+> DisplayWallet, DisplayAllWallets and DeleteWalletMenu functions
 > Warnings and errors removed within many functions 
 > Minor testing 
 

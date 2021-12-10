@@ -41,7 +41,7 @@ void PrintMenu()
 			break;
 		case 'b':
 			// Get a wallet ID. Check if it exists or not. If it does, ask the user for the username and password to the wallet in order to execute the DeleteWallet function.
-			//DeleteWallet();
+			DeleteWalletMenu();
 			break;
 		case 'c':
 			DisplayWallet();
@@ -304,4 +304,33 @@ void addWalletFromMenu(Wallet* walletDatabase)
 	// Run addWalletFunction with all the data 
 
 	printf("Successfully added guest.\n\n");
+}
+
+void DeleteWalletMenu()
+{
+	int userID = 0;
+	do
+	{
+		printf("Enter the wallet ID to be deleted: ");
+		scanf_s("%d", &userID);
+	} while (userID < 0 || userID >= DATABASE_SIZE);
+	
+	if (walletDatabase[userID].walletOccupied)
+	{
+		char userPass[BUFFER_SIZE] = { 0 };
+		do
+		{
+			printf("Enter correct credentials for wallet ID %d\nUsername: %s\nPassword: ",
+				walletDatabase[userID].walletID, walletDatabase[userID].walletUsername);
+			scanf_s("%s", userPass, BUFFER_SIZE);
+		} while (strcmp(userPass, walletDatabase[userID].walletPassword) != 0);
+
+		DeleteWallet(walletDatabase[userID]);
+	}
+	else
+	{
+		printf("Wallet is unoccupied in the database and cannot be deleted.\n");
+	}
+
+	return;
 }
