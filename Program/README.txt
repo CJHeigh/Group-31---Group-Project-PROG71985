@@ -8,7 +8,8 @@ CJ:
 
 Garrett Todd:
 > DisplayWallet and DisplayAllWallets functions
-> 
+> Warnings and errors removed within many functions 
+> Minor testing 
 
 Kenneth T: 
 > DisplayWalletRange function

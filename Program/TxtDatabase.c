@@ -53,9 +53,9 @@ void ReadFromTxt()
 				// Retrieve data from the current line if the current line is not purely equal to a new line or end of file
 				if (strcmp(currentLine, "\n") != 0 && strcmp(currentLine, "\0") != 0) //&& currentLine != "")
 				{
-					char walletUsername[BUFFER_SIZE] = { NULL };
-					char walletPassword[BUFFER_SIZE] = { NULL };
-					char btcAmount[BUFFER_SIZE] = { NULL };
+					char walletUsername[BUFFER_SIZE] = { 0 };
+					char walletPassword[BUFFER_SIZE] = { 0 };
+					char btcAmount[BUFFER_SIZE] = { 0 };
 
 					int semiColonsPassed = 0;
 					// Splits varaibles off the line. Would be nicer to have json!
@@ -74,7 +74,7 @@ void ReadFromTxt()
 						}
 					}
 
-					walletDatabase[i] = AddWallet(i+1, walletUsername, walletPassword, atof(btcAmount));
+					walletDatabase[i] = AddWallet(i+1, walletUsername, walletPassword, atof(btcAmount)); // atof retunrs double resulting in a warning of double to float
 				}
 				else
 					DeleteWallet(walletDatabase[i]);

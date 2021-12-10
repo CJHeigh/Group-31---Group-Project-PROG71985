@@ -24,8 +24,8 @@ void DeleteWallet(Wallet walletToDelete)
 {
 	walletToDelete.walletID = 0;
 	walletToDelete.walletOccupied = false;
-	*walletToDelete.walletUsername = NULL;
-	*walletToDelete.walletPassword = NULL;
+	*walletToDelete.walletUsername = '\0'; // Changed from NULL to '\0' to remove warning C4047
+	*walletToDelete.walletPassword = '\0'; // Same as line above
 	walletToDelete.btcAmount = 0;
 
 }

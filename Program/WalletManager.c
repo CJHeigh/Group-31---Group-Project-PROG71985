@@ -72,7 +72,7 @@ void DisplayWallet()
 	// If they match, ask if they would like to update their username, password, and btc amount. If any of the three variables doesn't need to be changed, return it as null when calling UpdateWallet() EXCEPT for btc amount. For btc amount, return a negative float.
 	//UpdateWallet(); // COMPLETED NOT TESTED
 
-	int userWalletID = NULL;
+	int userWalletID = 0;
 	bool userInputInvalid = true;
 
 	do
@@ -107,7 +107,7 @@ void DisplayWallet()
 
 	userInputInvalid = true;
 	char userAnswer;
-	char userPass[BUFFER_SIZE] = { NULL };
+	char userPass[BUFFER_SIZE] = { 0 };
 
 	do
 	{
@@ -139,8 +139,8 @@ void DisplayWallet()
 		if (strcmp(userPass, walletDatabase[userWalletID].walletPassword) == 0)
 		{
 			float BTCamount = -1;
-			char userChange[BUFFER_SIZE] = { NULL };
-			char passChange[BUFFER_SIZE] = { NULL };
+			char userChange[BUFFER_SIZE] = { 0 };
+			char passChange[BUFFER_SIZE] = { 0 };
 
 			printf("Would you like to change your Username? y or n -> ");
 			scanf_s("%c", &userAnswer, 1);
@@ -166,7 +166,7 @@ void DisplayWallet()
 			if (userAnswer == 'y')
 			{
 				printf("Enter what to change your Bitcoin amount to -> ");
-				scanf_s("%d", &BTCamount);
+				scanf_s("%f", &BTCamount);
 			}
 
 			UpdateWallet(walletDatabase[userWalletID], userChange, passChange, BTCamount);
