@@ -224,7 +224,7 @@ void DisplayAllWallets(Wallet* walletDatabase)
 	{
 		if (!walletDatabase[currentWalletID].walletOccupied)
 		{
-			printf("WalletID: %d is EMPTY\n", currentWalletID);
+			printf("WalletID: %d is EMPTY\n", currentWalletID + 1);
 		}
 		else
 		{
