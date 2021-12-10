@@ -13,7 +13,9 @@ Garrett Todd:
 
 Kenneth T: 
 > DisplayWalletRange function
-> DisplayAllWallets (partial) 
+> DisplayAllWallets (partial)
+> addWalletFromMenu function
+> Warning and error fixes. 
 
 PROJECT NOTES
 > Remember to comment and update this txt file!
