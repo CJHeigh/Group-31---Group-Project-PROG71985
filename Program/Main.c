@@ -12,7 +12,7 @@
 void main()
 {
 	// On start, read from the txt file and put it into memory
-	//ReadFromTxt();
+	ReadFromTxt();
 
 	// Then print the welcome
 	PrintWelcome();

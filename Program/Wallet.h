@@ -20,9 +20,9 @@ typedef struct
 
 Wallet walletDatabase[DATABASE_SIZE];
 
-Wallet* AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwordToAdd[BUFFER_SIZE], float btcToAdd);
-Wallet* DeleteWallet();
-Wallet* UpdateWallet(Wallet* walletToUpdate, char usernameToUpdateTo[BUFFER_SIZE], char passwordToUpdateTo[BUFFER_SIZE], float btcToUpdateTo);
+Wallet AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwordToAdd[BUFFER_SIZE], float btcToAdd);
+void DeleteWallet(Wallet walletToDelete);
+Wallet UpdateWallet(Wallet walletToUpdate, char usernameToUpdateTo[BUFFER_SIZE], char passwordToUpdateTo[BUFFER_SIZE], float btcToUpdateTo);
 
 void addWalletFromMenu(Wallet* walletDatabase);
 void DisplayAllWallets(Wallet* walletDatabase);

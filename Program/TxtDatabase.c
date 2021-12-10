@@ -77,7 +77,7 @@ void ReadFromTxt()
 					walletDatabase[i] = AddWallet(i+1, walletUsername, walletPassword, atof(btcAmount));
 				}
 				else
-					walletDatabase[i] = DeleteWallet();
+					DeleteWallet(walletDatabase[i]);
 
 				break;
 			}

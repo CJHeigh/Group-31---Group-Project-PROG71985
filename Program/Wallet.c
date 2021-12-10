@@ -20,17 +20,14 @@ Wallet AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwo
 	return walletToReturn;
 }
 
-Wallet DeleteWallet()
+void DeleteWallet(Wallet walletToDelete)
 {
-	Wallet walletToReturn;
+	walletToDelete.walletID = 0;
+	walletToDelete.walletOccupied = false;
+	*walletToDelete.walletUsername = NULL;
+	*walletToDelete.walletPassword = NULL;
+	walletToDelete.btcAmount = 0;
 
-	walletToReturn.walletID = 0;
-	walletToReturn.walletOccupied = false;
-	*walletToReturn.walletUsername = NULL;
-	*walletToReturn.walletPassword = NULL;
-	walletToReturn.btcAmount = 0;
-
-	return walletToReturn;
 }
 
 Wallet UpdateWallet(Wallet walletToUpdate, char usernameToUpdateTo[BUFFER_SIZE], char passwordToUpdateTo[BUFFER_SIZE], float btcToUpdateTo)
