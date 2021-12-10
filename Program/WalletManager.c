@@ -84,7 +84,7 @@ void DisplayWallet()
 		// Wallet ID is not equal to index!!!
 		userWalletID--;
 
-		if (userWalletID <= 0 || userWalletID > DATABASE_SIZE)
+		if (userWalletID < 0 || userWalletID >= DATABASE_SIZE)
 		{
 			printf("Wallet ID entered is invalid\n");
 		}
@@ -313,6 +313,7 @@ void DeleteWalletMenu()
 	{
 		printf("Enter the wallet ID to be deleted: ");
 		scanf_s("%d", &userID);
+		userID--;
 	} while (userID < 0 || userID >= DATABASE_SIZE);
 	
 	if (walletDatabase[userID].walletOccupied)
