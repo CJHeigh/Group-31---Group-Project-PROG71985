@@ -21,14 +21,14 @@ void PrintMenu()
 		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\ne) Display all crypto wallets\nf) Display wallets alphabetically\ng) Quit\n");
 
 		char input = '.';
-		while (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f')
+		while (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f' && input != 'g')
 		{
 			// Gets user input until a correct key is inputted
 			scanf_s(" %c", &input, 1);
 			// Clears the buffer of any potential extra characters. If removed, the buffer will empty at will!
 			while (getchar() != '\n');
 			// Displays an error message
-			if (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f')
+			if (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f' && input != 'g')
 				printf("Inappropriate input!\n");
 		}
 
