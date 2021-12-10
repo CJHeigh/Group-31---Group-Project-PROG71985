@@ -18,7 +18,7 @@ void PrintMenu()
 	// Keeps reprinting the menu until Quit() is executed
 	while (1)
 	{
-		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\ne) Display all crypto wallets\nf) Quit\n");
+		printf("To execute a function, type it's corrosponding key:\na) Add a crypto wallet\nb) Delete a crypto wallet\nc) Display/Update a crypto wallet\nd) Display a range of crypto wallets\ne) Display all crypto wallets\nf) Display wallets alphabetically\ng) Quit\n");
 
 		char input = '.';
 		while (input != 'a' && input != 'b' && input != 'c' && input != 'd' && input != 'e' && input != 'f')
@@ -53,6 +53,9 @@ void PrintMenu()
 			DisplayAllWallets(walletDatabase);
 			break;
 		case 'f':
+			displayOccupiedWalletsAlphabeticalByUsername(walletDatabase);
+			break;
+		case 'g':
 			Quit();
 			break;
 		}
@@ -334,4 +337,61 @@ void DeleteWalletMenu()
 	}
 
 	return;
+}
+
+// Function to show alphabetical list of occupied wallets
+// String comparison for qsort
+int compareFunction(const char* a, const char* b)
+{
+	return strcmp(a, b);
+}
+
+void displayOccupiedWalletsAlphabeticalByUsername(Wallet* walletDatabase)
+{
+	// Temporary storage for usernames for sorting
+	char lastNames[DATABASE_SIZE][BUFFER_SIZE];
+	int currentPosition = 0;
+
+	// Loop through wallets and find occupied ones
+	for (int curWallet = 0; curWallet < DATABASE_SIZE; curWallet++)
+	{
+		// Copy username to temporary sorting array
+		if (walletDatabase[curWallet].walletOccupied != WALLETEMPTY)
+		{
+			// Skip any 'occupied' wallets with empty username
+			if (strcmp(walletDatabase[curWallet].walletUsername, " ") == 0)
+			{
+				continue;
+			}
+			strcpy(lastNames[currentPosition], walletDatabase[curWallet].walletUsername);
+			currentPosition++;
+		}
+	}
+	// No wallets currently occupied, return
+	if (currentPosition == 0)
+	{
+		printf("No occupied wallets found.\n");
+		return;
+	}
+
+	// Run sorting algorithm
+	qsort(lastNames, currentPosition, sizeof(char) * BUFFER_SIZE, compareFunction);
+
+	// Loop through usernames and find them in the original array for alphabetical printing
+	for (int curName = 0; curName < DATABASE_SIZE; curName++)
+	{
+		// Loop through all rooms in original, unsorted list
+		for (int curWallet = 0; curWallet < DATABASE_SIZE; curWallet++)
+		{
+			// Look for matching last names
+			if (strcmp(walletDatabase[curWallet].walletUsername, lastNames[curName]) == 0)
+			{
+				// Print out occupancy data
+				printf("WalletID: #%d, Username: %s\n",
+					walletDatabase[curWallet].walletID,
+					walletDatabase[curWallet].walletUsername);
+	
+			}
+		}
+	}
 }
