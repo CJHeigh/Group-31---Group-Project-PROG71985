@@ -140,12 +140,14 @@ void DisplayWallet()
 
 		if (strcmp(userPass, walletDatabase[userWalletID].walletPassword) == 0)
 		{
-			float BTCamount = -1;
+			float BTCamount = walletDatabase[userWalletID].btcAmount;
 			char userChange[BUFFER_SIZE] = { 0 };
 			char passChange[BUFFER_SIZE] = { 0 };
-
+			strcpy(userChange, walletDatabase[userWalletID].walletUsername);
+			strcpy(passChange, walletDatabase[userWalletID].walletPassword);
+				
 			printf("Would you like to change your Username? y or n -> ");
-			scanf_s("%c", &userAnswer, 1);
+			scanf_s(" %c", &userAnswer, 1);
 			
 			if (userAnswer == 'y')
 			{
@@ -154,7 +156,7 @@ void DisplayWallet()
 			}
 
 			printf("Would you like to change your Password? y or n -> ");
-			scanf_s("%c", &userAnswer, 1);
+			scanf_s(" %c", &userAnswer, 1);
 
 			if (userAnswer == 'y')
 			{
@@ -163,7 +165,7 @@ void DisplayWallet()
 			}
 
 			printf("Do you need to change your Bitcoin amount? y or n -> ");
-			scanf_s("%c", &userAnswer, 1);
+			scanf_s(" %c", &userAnswer, 1);
 
 			if (userAnswer == 'y')
 			{
