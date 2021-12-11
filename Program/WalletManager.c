@@ -80,7 +80,6 @@ void DisplayWallet()
 
 	do
 	{
-		printf("%d", walletDatabase[0].walletID);
 		printf("Enter the crypto wallet ID you wish to access -> ");
 		scanf_s("%d", &userWalletID);
 
