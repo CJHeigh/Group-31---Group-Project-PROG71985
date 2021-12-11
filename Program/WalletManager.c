@@ -323,9 +323,17 @@ void DeleteWalletMenu()
 		char userPass[BUFFER_SIZE] = { 0 };
 		do
 		{
+			// Getting the password to delete the account 
+			printf("Enter 0 to return to menu.\n");
 			printf("Enter correct credentials for wallet ID %d\nUsername: %s\nPassword: ",
 				walletDatabase[userID].walletID, walletDatabase[userID].walletUsername);
 			scanf_s("%s", userPass, BUFFER_SIZE);
+			
+			// Return to menu upon 0 entry
+			if (userPass[0] == '0')
+			{
+				return;
+			}
 		} while (strcmp(userPass, walletDatabase[userID].walletPassword) != 0);
 
 		walletDatabase[userID] = DeleteWallet(walletDatabase[userID]);
