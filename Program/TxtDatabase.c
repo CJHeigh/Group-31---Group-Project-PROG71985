@@ -77,7 +77,7 @@ void ReadFromTxt()
 					walletDatabase[i] = AddWallet(i+1, walletUsername, walletPassword, atof(btcAmount)); // atof retunrs double resulting in a warning of double to float
 				}
 				else
-					DeleteWallet(walletDatabase[i]);
+					walletDatabase[i] = DeleteWallet(walletDatabase[i]);
 
 				break;
 			}

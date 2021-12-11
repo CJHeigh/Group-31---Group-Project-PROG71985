@@ -20,12 +20,14 @@ Wallet AddWallet(int walletIDToAdd, char usernameToAdd[BUFFER_SIZE], char passwo
 	return walletToReturn;
 }
 
-void DeleteWallet(Wallet walletToDelete)
+Wallet DeleteWallet(Wallet walletToDelete)
 {
 	walletToDelete.walletOccupied = false;
 	*walletToDelete.walletUsername = '\0'; // Changed from NULL to '\0' to remove warning C4047
 	*walletToDelete.walletPassword = '\0'; // Same as line above
 	walletToDelete.btcAmount = 0;
+
+	return walletToDelete; 
 
 }
 

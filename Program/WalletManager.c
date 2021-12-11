@@ -329,7 +329,7 @@ void DeleteWalletMenu()
 			scanf_s("%s", userPass, BUFFER_SIZE);
 		} while (strcmp(userPass, walletDatabase[userID].walletPassword) != 0);
 
-		DeleteWallet(walletDatabase[userID]);
+		walletDatabase[userID] = DeleteWallet(walletDatabase[userID]);
 	}
 	else
 	{

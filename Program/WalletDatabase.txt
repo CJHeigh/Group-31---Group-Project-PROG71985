@@ -1,7 +1,7 @@
 Sleve_Mcdicheal;123456;0.005810
 Onson_Sweemy;123456789;0.414129
 
-ktargosz;newPassword;0.942935
+
 Anatoli_Smorin;password;1.412951
 Rey_Mcsriff;12345678;3.032794
 
