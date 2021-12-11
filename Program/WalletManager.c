@@ -305,8 +305,6 @@ void addWalletFromMenu(Wallet* walletDatabase)
 	walletDatabase[selectedWalletID].walletOccupied = WALLETFULL;
 	walletDatabase[selectedWalletID].walletID = selectedWalletID;
 
-	// Run addWalletFunction with all the data 
-
 	printf("Successfully added guest.\n\n");
 }
 

@@ -1,7 +1,4 @@
 Sleve_Mcdicheal;123456;0.005810
-Onson_Sweemy;123456789;0.414129
-
-
 
 Rey_Mcsriff;12345678;3.032794
 
@@ -29,6 +26,9 @@ Karl_Dandleton;qqww1122;0.389026
 Mike_Sernandez;123;0.175393
 
 Todd_Bonzalez;omgpop;0.356724
+
+
+
 
 
 
