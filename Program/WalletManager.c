@@ -207,7 +207,7 @@ void DisplayWalletRange() // Get two wallet ID's and print the wallet ID's, user
 	else
 	{
 		// For all elements in the user specified range...
-		for (firstWalletID; firstWalletID < lastWalletID + 1; firstWalletID++)
+		for (firstWalletID; firstWalletID <= lastWalletID; firstWalletID++)
 		{
 			printf("Wallet ID %d ", firstWalletID);
 
